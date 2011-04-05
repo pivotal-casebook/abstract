@@ -8,9 +8,7 @@
 ### copyright(c) 2006 kuwata-lab.com all rights reserved.
 ###
 
-require 'rubygems'
-
-spec = Gem::Specification.new do |s|
+Gem::Specification.new do |s|
   ## package information
   s.name        = 'abstract'
   s.author      = 'makoto kuwata'
@@ -31,18 +29,3 @@ spec = Gem::Specification.new do |s|
   s.files       = files
   s.test_file   = 'test/test.rb'
 end
-
-# Quick fix for Ruby 1.8.3 / YAML bug   (thanks to Ross Bamford)
-if (RUBY_VERSION == '1.8.3')
-   def spec.to_yaml
-      out = super
-      out = '--- ' + out unless out =~ /^---/
-      out
-   end
-end
-
-if $0 == __FILE__
-  Gem::manage_gems
-  Gem::Builder.new(spec).build
-end
-
